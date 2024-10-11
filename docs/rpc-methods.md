@@ -89,8 +89,6 @@ This document provides a detailed description of all available RPC methods in th
 - **[gettxoutproof](#gettxoutproof)**: Retrieves proof that an unspent transaction output (UTXO) is included in a block.
 - **[verifytxoutproof](#verifytxoutproof)**: Verifies the proof that an unspent transaction output (UTXO) is included in a block.
 
-````
-
 ---
 
 ## Method Descriptions
@@ -111,12 +109,12 @@ This document provides a detailed description of all available RPC methods in th
 
 ```typescript
 pocketNetProxy.rpc
-  .getapps({ request: "exampleRequest" })
+  .getapps({ request: 'exampleRequest' })
 
-  .then((response) => console.log("Applications:", response))
+  .then(response => console.log('Applications:', response))
 
-  .catch((error) => console.error("Failed to fetch applications:", error));
-````
+  .catch(error => console.error('Failed to fetch applications:', error))
+```
 
 ---
 
