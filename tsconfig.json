@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "constants": ["constants/*"],
+      "types": ["types/*"],
+      "lib": ["lib/*"]
+    },
+    "allowJs": true,
+    "checkJs": true,
+    "strict": true,
+    "declaration": true,
+    "declarationMap": true,
+    "emitDeclarationOnly": false,
+    "esModuleInterop": true,
+    "skipLibCheck": true
+  },
+  "include": ["lib/**/*.ts", "types/**/*.d.ts", "constants/**/*.d.ts"]
+}
