@@ -1,6 +1,6 @@
-import type { OptionalRPCParams, RPCMethodMap, RPCMethods } from 'types/rpc'
-import { availableRPCMethods } from 'constants/rpc'
+import type { OptionalRPCParams, RPCMethodMap, RPCMethods } from './rpc.types'
 import kit from 'pocketnet-proxy/src/kit.js'
+import { availableRPCMethods } from './rpc.constants'
 
 global.MIN_NODES_COUNT = 10
 global.WRITE_LOGS = true
@@ -15,7 +15,7 @@ global.USE_TLS_NODES_ONLY = false
  * The class provides an `init` method for initializing the kit, and it dynamically binds all RPC methods
  * to the `rpc` property for convenient usage.
  */
-class PocketNetProxy {
+class PocketNetProxyApi {
   /**
    * Indicates whether the PocketNet kit has been initialized.
    *
@@ -153,4 +153,4 @@ class PocketNetProxy {
   }
 }
 
-export default PocketNetProxy
+export default PocketNetProxyApi

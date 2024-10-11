@@ -1,4 +1,4 @@
-import type { RPCMethodMap } from 'types/rpc'
+import type { RPCMethodMap } from './rpc.types'
 
 export const availableRPCMethods: (keyof RPCMethodMap)[] = [
   'getapps',
