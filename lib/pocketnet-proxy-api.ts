@@ -151,6 +151,35 @@ class PocketNetProxyApi {
       throw new Error('Failed to initialize kit')
     }
   }
+
+  /**
+   * Creates and initializes an instance of the PocketNetProxyApi class.
+   *
+   * This static method allows you to create a new instance of PocketNetProxyApi
+   * and ensures that it is fully initialized before use. It calls the `init()`
+   * method internally to set up the necessary configurations and dependencies.
+   *
+   * @async
+   * @static
+   * @returns {Promise<PocketNetProxyApi>} A promise that resolves to an initialized
+   * instance of the PocketNetProxyApi class, ready for use.
+   *
+   * @example
+   * PocketNetProxyApi.create()
+   *   .then((proxy) => {
+   *     proxy.rpc.getuserprofile({ address: 'userAddress', shortForm: 'yes' })
+   *       .then(response => console.log('User Profile:', response))
+   *       .catch(error => console.error('Failed to fetch user profile:', error));
+   *   })
+   *   .catch(error => {
+   *     console.error('Failed to initialize PocketNet Proxy:', error);
+   *   });
+   */
+  static async create(): Promise<PocketNetProxyApi> {
+    const instance = new PocketNetProxyApi()
+    await instance.init()
+    return instance
+  }
 }
 
 export default PocketNetProxyApi
