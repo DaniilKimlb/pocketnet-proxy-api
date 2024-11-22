@@ -4,8 +4,8 @@
   "description": "Library for interacting with the PocketNet proxy.",
   "author": "Pocketnet Team",
   "license": "Apache-2.0",
-  "main": "./dist/pockepocketnet-proxy-api.js",
-  "types": "./dist/pocketnet-proxy-api.d.ts",
+  "main": "/dist/pockepocketnet-proxy-api.js",
+  "types": "/dist/pocketnet-proxy-api.d.ts",
   "exports": {
     ".": {
       "require": "./dist/pocketnet-proxy-api.js",
