@@ -4,15 +4,6 @@
   "description": "Library for interacting with the PocketNet proxy.",
   "author": "Pocketnet Team",
   "license": "Apache-2.0",
-  "main": "./dist/pockepocketnet-proxy-api.js",
-  "types": "./dist/pocketnet-proxy-api.d.ts",
-  "exports": {
-    ".": {
-      "require": "./dist/pocketnet-proxy-api.js",
-      "import": "./dist/pocketnet-proxy-api.js",
-      "default": "./dist/pocketnet-proxy-api.js"
-    }
-  },
   "keywords": [
     "pocketnet",
     "bastion",
@@ -20,16 +11,25 @@
     "api",
     "sdk"
   ],
+  "exports": {
+    ".": {
+      "import": "./dist/pocketnet-proxy-api.js",
+      "require": "./dist/pocketnet-proxy-api.js",
+      "default": "./dist/pocketnet-proxy-api.js"
+    }
+  },
+  "main": "./dist/pockepocketnet-proxy-api.js",
+  "types": "./dist/pocketnet-proxy-api.d.ts",
   "scripts": {
     "build": "tsc",
     "prepare": "npm run build"
   },
   "dependencies": {
-    "pocketnet-proxy": "https://github.com/pocketnetteam/pocketnet.proxy.git#main"
+    "pocketnet-proxy": "https://github.com/pocketnetteam/pocketnet.proxy.git#main",
+    "typescript": "^5.6.3"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^3.7.3",
-    "eslint": "^9.12.0",
-    "typescript": "^5.6.3"
+    "eslint": "^9.12.0"
   }
 }
