@@ -20,15 +20,18 @@
   },
   "main": "./dist/pockepocketnet-proxy-api.js",
   "types": "./dist/pocketnet-proxy-api.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsc",
     "prepare": "npm run build"
   },
   "dependencies": {
-    "pocketnet-proxy": "https://github.com/pocketnetteam/pocketnet.proxy.git#main",
-    "typescript": "^5.6.3"
+    "pocketnet-proxy": "htt ps://github.com/pocketnetteam/pocketnet.proxy.git#main",
   },
   "devDependencies": {
+    "typescript": "^5.6.3",
     "@antfu/eslint-config": "^3.7.3",
     "eslint": "^9.12.0"
   }
