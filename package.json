@@ -18,7 +18,7 @@
       "default": "./dist/pocketnet-proxy-api.js"
     }
   },
-  "main": "./dist/pockepocketnet-proxy-api.js",
+  "main": "./dist/pocketnet-proxy-api.js",
   "types": "./dist/pocketnet-proxy-api.d.ts",
   "files": [
     "dist"
@@ -28,7 +28,7 @@
     "prepare": "npm run build"
   },
   "dependencies": {
-    "pocketnet-proxy": "htt ps://github.com/pocketnetteam/pocketnet.proxy.git#main",
+    "pocketnet-proxy": "github:pocketnetteam/pocketnet.proxy#master"
   },
   "devDependencies": {
     "typescript": "^5.6.3",
