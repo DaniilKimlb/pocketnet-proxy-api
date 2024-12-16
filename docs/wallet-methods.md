@@ -4,12 +4,12 @@
 
 ## Table of Contents
 
-- [sendwithprivatekey](#sendwithprivatekey)
-- [getunspentswithprivatekey](#getunspentswithprivatekey)
+- [sendFundsWithPrivateKey](#sendFundsWithPrivateKey)
+- [getBalanceWithPrivateKey](#getBalanceWithPrivateKey)
 
 ---
 
-### `sendwithprivatekey`
+### `sendFundsWithPrivateKey`
 
 **Description:**
 Sends a specified amount of funds to a given address, signing the transaction with the provided private key. The private key corresponds to the sender's address, and this method will automatically craft and sign the transaction.
@@ -26,7 +26,7 @@ A promise that resolves to the transaction result, which may include a transacti
 **Example:**
 ```typescript
 proxy.wallet
-  .sendwithprivatekey({
+  .getBalanceWithPrivateKey({
     address: 'recipientAddress',
     amount: 1000,
     key: 'privateKeyString'
@@ -37,7 +37,7 @@ proxy.wallet
 
 ---
 
-### `getunspentswithprivatekey`
+### `getBalanceWithPrivateKey`
 
 **Description:**
 Retrieves the unspent transaction outputs (UTXOs) and balance information associated with the address derived from the given private key. These UTXOs represent the spendable funds under that private key.
@@ -46,15 +46,19 @@ Retrieves the unspent transaction outputs (UTXOs) and balance information associ
 - `params: { key: string }`
   - **`key`** (string): The private key for which to retrieve unspent outputs and balance.
 
-**Returns:** `Promise<any>`
-A promise that resolves to an object or array containing UTXO information and overall balance. Typically, you will receive a list of UTXOs, each including the transaction ID, output index, and amount, as well as the total available balance for that private key.
+**Returns:**
+`Promise<GetUnspentsWithPrivateKeyResult>`
+A promise that resolves to an object containing the following fields:
+- **`unspents`** (`unknown[]`): An array of UTXOs (Unspent Transaction Outputs), where each entry typically includes the transaction ID, output index, and amount.
+- **`balance`** (`number`): The total balance (sum of all UTXOs) available for the given private key.
 
 **Example:**
 ```typescript
 proxy.wallet
   .getunspentswithprivatekey({ key: 'privateKeyString' })
-  .then((unspents) => {
-    console.log('Unspent Outputs and Balance Info:', unspents)
+  .then((result) => {
+    console.log('Unspent Outputs:', result.unspents)
+    console.log('Balance:', result.balance)
   })
   .catch(error => console.error('Failed to fetch unspent outputs:', error))
 ```
