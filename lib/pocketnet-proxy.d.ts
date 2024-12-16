@@ -7,6 +7,21 @@ declare namespace global {
 }
 
 declare module 'pocketnet-proxy/src/kit.js' {
+  export interface SendWithPrivateKeyParams {
+    address: string
+    amount: number
+    key: string
+  }
+
+  export interface GetUnspentsWithPrivateKeyParams {
+    key: string
+  }
+
+  export interface GetUnspentsWithPrivateKeyResult {
+    unspents: unknown[]
+    balance: number
+  }
+
   interface NodeManager {
     someProperty: string
   }
@@ -14,6 +29,11 @@ declare module 'pocketnet-proxy/src/kit.js' {
   interface Cache {
     add: (key: string, value: any) => void
     get: (key: string) => any
+  }
+
+  interface Wallet {
+    sendwithprivatekey: (params: SendWithPrivateKeyParams) => Promise<any>
+    getunspentswithprivatekey: (params: GetUnspentsWithPrivateKeyParams) => Promise<GetUnspentsWithPrivateKeyResult>
   }
 
   interface Kit {
@@ -30,6 +50,7 @@ declare module 'pocketnet-proxy/src/kit.js' {
           }
         }
       }
+      wallet: Wallet
     }>
   }
 

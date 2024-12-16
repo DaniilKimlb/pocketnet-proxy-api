@@ -6,7 +6,7 @@
 
 ## Overview
 
-The **PocketNet Proxy API** provides an easy-to-use interface to interact with the PocketNet network's RPC methods. It includes all the available methods and their corresponding parameters to interact with various network features, such as retrieving user profiles, managing transactions, and obtaining blockchain information.
+The **PocketNet Proxy API** provides an easy-to-use interface to interact with the PocketNet network's RPC methods. It includes all the available methods and their corresponding parameters to interact with various network features, such as retrieving user profiles, managing transactions, obtaining blockchain information, and performing wallet-related operations.
 
 This project provides a structured way to access the PocketNet proxy, making it simpler to integrate with applications and manage communication with the network. Each method in the library corresponds to a specific RPC action, and all method parameters and return types are fully documented for ease of use.
 
@@ -14,7 +14,8 @@ This project provides a structured way to access the PocketNet proxy, making it 
 
 - [Installation](#installation)
 - [Usage](#usage)
-- [Methods](#methods)
+- [RPC Methods](#rpc-methods)
+- [Wallet Methods](#wallet-methods)
 - [Configuration](#configuration)
 - [License](#license)
 
@@ -26,7 +27,7 @@ To install the library directly from the Git repository, you can use the followi
 git clone https://github.com/DaniilKimlb/pocketnet-proxy-api.git
 ```
 
-Alternatively, you can add the repository as a dependency in your package.json:
+Alternatively, you can add the repository as a dependency in your `package.json`:
 
 ```json
 {
@@ -57,15 +58,27 @@ proxyInstance
       .getuserprofile({ address: 'userAddress', shortForm: 'yes' })
       .then(response => console.log('User Profile:', response))
       .catch(error => console.error('Failed to fetch user profile:', error))
+
+    // Example of using a wallet method
+    proxyInstance.wallet
+      .sendwithprivatekey({ address: 'recipientAddress', amount: 1000, key: 'privateKeyString' })
+      .then(txResult => console.log('Transaction sent:', txResult))
+      .catch(error => console.error('Failed to send funds:', error))
   })
   .catch((error) => {
     console.error('Failed to initialize PocketNet Proxy:', error)
   })
 ```
 
-## Methods
+## RPC Methods
 
-The PocketNet Proxy API supports a wide range of RPC methods to interact with the network. For the complete list of methods, their descriptions, and parameter details, see the [Methods Documentation](./docs/rpc-methods.md).
+The PocketNet Proxy API supports a wide range of RPC methods to interact with the network. For the complete list of methods, their descriptions, and parameter details, see the [RPC Methods Documentation](./docs/rpc-methods.md).
+
+## Wallet Methods
+
+In addition to RPC methods, the PocketNet Proxy API provides wallet-related functionality through the `wallet` object. These methods allow you to manage transactions and retrieve balance information by using private keys, providing more direct control over your funds:
+
+For more details on these wallet methods and their responses, refer to the [Wallet Methods Documentation](./docs/wallet-methods.md).
 
 ## Configuration
 
@@ -91,14 +104,6 @@ global.REVERSE_PROXY = true
 global.USE_TLS_NODES_ONLY = false
 ```
 
-## Methods Documentation
-
-For detailed information on all available methods, their descriptions, parameters, and usage examples, refer to the [Methods Documentation](./docs/methods.md).
-
 ## License
 
 This project is licensed under the Apache-2.0 License. See the [LICENSE](./LICENSE) file for more information.
-
-```
-
-```

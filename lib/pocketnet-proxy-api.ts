@@ -1,6 +1,7 @@
 import type { OptionalRPCParams, RPCMethodMap, RPCMethods } from './rpc.types'
 import kit from 'pocketnet-proxy/src/kit.js'
 import { availableRPCMethods } from './rpc.constants'
+import { Wallet } from './wallet'
 
 global.MIN_NODES_COUNT = 10
 global.WRITE_LOGS = true
@@ -23,6 +24,15 @@ class PocketNetProxyApi {
    * @type {boolean}
    */
   private kitInitialized: boolean = false
+
+  /**
+   * Instance of the Wallet class for managing wallet operations.
+   *
+   * Provides functionality to:
+   * - Send funds from an address using a private key.
+   * - Retrieve the balance and unspent outputs of an address using a private key.
+   */
+  wallet: Wallet = new Wallet(this)
 
   /**
    * Object containing all RPC methods as properties.
@@ -134,7 +144,7 @@ class PocketNetProxyApi {
    *     console.error('Failed to initialize kit', error);
    *   });
    */
-  async init(): Promise<void> {
+  private async init(): Promise<void> {
     try {
       // Dynamically import the required module
       await import('pocketnet-proxy/src/lib/btc16.js')
@@ -149,6 +159,12 @@ class PocketNetProxyApi {
       console.error(e, 'ERROR - initKit')
       // Throw a new error if initialization fails
       throw new Error('Failed to initialize kit')
+    }
+  }
+
+  ensureInitialized() {
+    if (!this.kitInitialized) {
+      throw new Error('Kit is not initialized. Call init() first.')
     }
   }
 
