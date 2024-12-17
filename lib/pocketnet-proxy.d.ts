@@ -33,7 +33,7 @@ declare module 'pocketnet-proxy/src/kit.js' {
   }
 
   interface Wallet {
-    sendwithprivatekey: (params: SendWithPrivateKeyParams) => Promise<any>
+    sendwithprivatekey: (params: SendWithPrivateKeyParams) => Promise<string>
     getunspentswithprivatekey: (params: GetUnspentsWithPrivateKeyParams) => Promise<GetUnspentsWithPrivateKeyResult>
   }
 

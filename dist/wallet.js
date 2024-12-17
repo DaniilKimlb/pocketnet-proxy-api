@@ -15,7 +15,7 @@ class Wallet {
     /**
      * Sends funds from the specified address using the corresponding private key.
      *
-     * @param {SendWithPrivateKeyParams} params - The parameters for the transaction.
+     * @param {SendFundsWithPrivateKeyParams} params - The parameters for the transaction.
      * @param {string} params.address - The recipient's address where the funds will be sent.
      * @param {number} params.amount - The amount of funds to send.
      * @param {string} params.key - The private key of the address sending the funds.
@@ -32,7 +32,7 @@ class Wallet {
     /**
      * Retrieves the balance and unspent outputs for an address using the corresponding private key.
      *
-     * @param {GetUnspentsWithPrivateKeyParams} params - The parameters for retrieving unspent outputs.
+     * @param {GetBalanceWithPrivateKeyParams} params - The parameters for retrieving unspent outputs.
      * @param {string} params.key - The private key of the address to query.
      * @returns {Promise<any>} A promise that resolves to the unspent outputs and balance.
      */
