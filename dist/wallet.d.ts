@@ -1,5 +1,5 @@
-import type PocketNetProxyApi from "./pocketnet-proxy-api";
-import { GetBalanceWithPrivateKeyParams, SendFundsWithPrivateKeyParams, GetBalanceWithPrivateKeyResult, SendFundsWithPrivateKeyResult } from "./wallet.types";
+import type PocketNetProxyApi from './pocketnet-proxy-api';
+import type { GetBalanceWithPrivateKeyParams, GetBalanceWithPrivateKeyResult, SendFundsWithPrivateKeyParams, SendFundsWithPrivateKeyResult } from './wallet.types';
 /**
  * A class for wallet operations, including sending funds and retrieving balances.
  */

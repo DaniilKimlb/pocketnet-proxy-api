@@ -33,6 +33,7 @@ class PocketNetProxyApi {
    * - Retrieve the balance and unspent outputs of an address using a private key.
    */
   wallet: Wallet = new Wallet(this)
+  proxy: Awaited<ReturnType<typeof kit.proxy>> | null = null
 
   /**
    * Object containing all RPC methods as properties.
@@ -111,12 +112,9 @@ class PocketNetProxyApi {
     method: T,
     params?: OptionalRPCParams<RPCMethodMap[T]>,
   ): Promise<any> {
-    if (!this.kitInitialized) {
-      throw new Error('Kit is not initialized. Call init() first.')
-    }
+    this.ensureInitialized()
 
-    const proxy = await kit.proxy()
-    return proxy.api.node.rpc.action({
+    return this.proxy?.api.node.rpc.action({
       method,
       parameters: params,
     })
@@ -144,16 +142,17 @@ class PocketNetProxyApi {
    *     console.error('Failed to initialize kit', error);
    *   });
    */
-  private async init(): Promise<void> {
+  private async init(): Promise<typeof this.proxy> {
     try {
       // Dynamically import the required module
       await import('pocketnet-proxy/src/lib/btc16.js')
 
       // Start the kit with the specified list of modules
-      await kit.start({ list: ['nodeManager', 'cache', 'wallet'] })
-
+      await kit.start({ list: ['nodeManager', 'cache'] })
+      this.proxy = await kit.proxy()
       // Mark the kit as initialized
       this.kitInitialized = true
+      return this.proxy
     }
     catch (e) {
       console.error(e, 'ERROR - initKit')
@@ -163,7 +162,7 @@ class PocketNetProxyApi {
   }
 
   ensureInitialized() {
-    if (!this.kitInitialized) {
+    if (!this.kitInitialized || !this.proxy) {
       throw new Error('Kit is not initialized. Call init() first.')
     }
   }
@@ -193,7 +192,8 @@ class PocketNetProxyApi {
    */
   static async create(): Promise<PocketNetProxyApi> {
     const instance = new PocketNetProxyApi()
-    await instance.init()
+    const proxy = await instance.init()
+    await proxy?.nodeManager.waitreadywithrating()
     return instance
   }
 }

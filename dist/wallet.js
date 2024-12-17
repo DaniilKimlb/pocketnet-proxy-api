@@ -1,10 +1,6 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Wallet = void 0;
-const kit_js_1 = __importDefault(require("pocketnet-proxy/src/kit.js"));
 /**
  * A class for wallet operations, including sending funds and retrieving balances.
  */
@@ -25,9 +21,9 @@ class Wallet {
      * @returns {Promise<string>} A promise that resolves to the transaction ID (txid).
      */
     async sendFundsWithPrivateKey(params) {
+        var _a;
         this.api.ensureInitialized();
-        const proxy = await kit_js_1.default.proxy();
-        return proxy.wallet.sendwithprivatekey(params);
+        return (_a = this.api.proxy) === null || _a === void 0 ? void 0 : _a.wallet.sendwithprivatekey(params);
     }
     /**
      * Retrieves the balance and unspent outputs for an address using the corresponding private key.
@@ -37,9 +33,9 @@ class Wallet {
      * @returns {Promise<any>} A promise that resolves to the unspent outputs and balance.
      */
     async getBalanceWithPrivateKey(params) {
+        var _a;
         this.api.ensureInitialized();
-        const proxy = await kit_js_1.default.proxy();
-        return proxy.wallet.getunspentswithprivatekey(params);
+        return (_a = this.api.proxy) === null || _a === void 0 ? void 0 : _a.wallet.getunspentswithprivatekey(params);
     }
 }
 exports.Wallet = Wallet;

@@ -31,7 +31,9 @@ declare module 'pocketnet-proxy/src/kit.js' {
     add: (key: string, value: any) => void
     get: (key: string) => any
   }
-
+  interface NodeManager {
+    waitreadywithrating: () => Promise<void>
+  }
   interface Wallet {
     sendwithprivatekey: (params: SendWithPrivateKeyParams) => Promise<string>
     getunspentswithprivatekey: (params: GetUnspentsWithPrivateKeyParams) => Promise<GetUnspentsWithPrivateKeyResult>
@@ -52,6 +54,7 @@ declare module 'pocketnet-proxy/src/kit.js' {
         }
       }
       wallet: Wallet
+      nodeManager: NodeManager
     }>
   }
 

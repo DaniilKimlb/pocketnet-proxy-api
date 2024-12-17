@@ -63,6 +63,7 @@ class PocketNetProxyApi {
          * - Retrieve the balance and unspent outputs of an address using a private key.
          */
         this.wallet = new wallet_1.Wallet(this);
+        this.proxy = null;
         /**
          * Object containing all RPC methods as properties.
          * Each method corresponds to a key in `RPCMethodMap`.
@@ -127,11 +128,9 @@ class PocketNetProxyApi {
      * @private
      */
     async callRPCMethod(method, params) {
-        if (!this.kitInitialized) {
-            throw new Error('Kit is not initialized. Call init() first.');
-        }
-        const proxy = await kit_js_1.default.proxy();
-        return proxy.api.node.rpc.action({
+        var _a;
+        this.ensureInitialized();
+        return (_a = this.proxy) === null || _a === void 0 ? void 0 : _a.api.node.rpc.action({
             method,
             parameters: params,
         });
@@ -163,9 +162,11 @@ class PocketNetProxyApi {
             // Dynamically import the required module
             await Promise.resolve().then(() => __importStar(require('pocketnet-proxy/src/lib/btc16.js')));
             // Start the kit with the specified list of modules
-            await kit_js_1.default.start({ list: ['nodeManager', 'cache', 'wallet'] });
+            await kit_js_1.default.start({ list: ['nodeManager', 'cache'] });
+            this.proxy = await kit_js_1.default.proxy();
             // Mark the kit as initialized
             this.kitInitialized = true;
+            return this.proxy;
         }
         catch (e) {
             console.error(e, 'ERROR - initKit');
@@ -174,7 +175,7 @@ class PocketNetProxyApi {
         }
     }
     ensureInitialized() {
-        if (!this.kitInitialized) {
+        if (!this.kitInitialized || !this.proxy) {
             throw new Error('Kit is not initialized. Call init() first.');
         }
     }
@@ -203,7 +204,8 @@ class PocketNetProxyApi {
      */
     static async create() {
         const instance = new PocketNetProxyApi();
-        await instance.init();
+        const proxy = await instance.init();
+        await (proxy === null || proxy === void 0 ? void 0 : proxy.nodeManager.waitreadywithrating());
         return instance;
     }
 }

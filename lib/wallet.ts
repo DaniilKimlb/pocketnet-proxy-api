@@ -1,15 +1,15 @@
 import type {
   GetUnspentsWithPrivateKeyParams,
   SendWithPrivateKeyParams,
-} from "pocketnet-proxy/src/kit.js";
-import type PocketNetProxyApi from "./pocketnet-proxy-api";
-import kit from "pocketnet-proxy/src/kit.js";
-import {
+} from 'pocketnet-proxy/src/kit.js'
+import type PocketNetProxyApi from './pocketnet-proxy-api'
+import type {
   GetBalanceWithPrivateKeyParams,
-  SendFundsWithPrivateKeyParams,
   GetBalanceWithPrivateKeyResult,
+  SendFundsWithPrivateKeyParams,
   SendFundsWithPrivateKeyResult,
-} from "./wallet.types";
+} from './wallet.types'
+import kit from 'pocketnet-proxy/src/kit.js'
 
 /**
  * A class for wallet operations, including sending funds and retrieving balances.
@@ -30,11 +30,10 @@ export class Wallet {
    * @returns {Promise<string>} A promise that resolves to the transaction ID (txid).
    */
   public async sendFundsWithPrivateKey(
-    params: SendFundsWithPrivateKeyParams
+    params: SendFundsWithPrivateKeyParams,
   ): Promise<SendFundsWithPrivateKeyResult> {
-    this.api.ensureInitialized();
-    const proxy = await kit.proxy();
-    return proxy.wallet.sendwithprivatekey(params);
+    this.api.ensureInitialized()
+    return this.api.proxy?.wallet.sendwithprivatekey(params)
   }
 
   /**
@@ -45,10 +44,9 @@ export class Wallet {
    * @returns {Promise<any>} A promise that resolves to the unspent outputs and balance.
    */
   public async getBalanceWithPrivateKey(
-    params: GetBalanceWithPrivateKeyParams
+    params: GetBalanceWithPrivateKeyParams,
   ): Promise<GetBalanceWithPrivateKeyResult> {
-    this.api.ensureInitialized();
-    const proxy = await kit.proxy();
-    return proxy.wallet.getunspentswithprivatekey(params);
+    this.api.ensureInitialized()
+    return this.api.proxy?.wallet.getunspentswithprivatekey(params)
   }
 }
