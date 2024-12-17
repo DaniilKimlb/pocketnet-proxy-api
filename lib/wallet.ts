@@ -16,7 +16,10 @@ export class Wallet {
    * @param {string} params.address - The recipient's address where the funds will be sent.
    * @param {number} params.amount - The amount of funds to send.
    * @param {string} params.key - The private key of the address sending the funds.
-   * @returns {Promise<any>} A promise that resolves to the transaction result.
+   * @param {'include' | 'exclude'} [params.feeMode] - Determines who pays the transaction fee:
+   *        - 'include': The fee is deducted from the amount (recipient pays).
+   *        - 'exclude': The fee is added on top of the amount (sender pays).
+   * @returns {Promise<string>} A promise that resolves to the transaction ID (txid).
    */
   public async sendFundsWithPrivateKey(params: SendWithPrivateKeyParams): Promise<any> {
     this.api.ensureInitialized()

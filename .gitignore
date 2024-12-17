@@ -2,7 +2,7 @@
 .vite-ssg-dist
 .vite-ssg-temp
 *.local
-dist
+data
 dist-ssr
 node_modules
 .idea/

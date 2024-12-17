@@ -12,28 +12,37 @@
 ### `sendFundsWithPrivateKey`
 
 **Description:**
-Sends a specified amount of funds to a given address, signing the transaction with the provided private key. The private key corresponds to the sender's address, and this method will automatically craft and sign the transaction.
+Sends a specified amount of funds to a given address, signing the transaction with the provided private key. The private key corresponds to the sender's address, and this method will automatically craft and sign the transaction. You can also specify who pays the transaction fee using the optional `feeMode` parameter.
 
 **Parameters:**
-- `params: { address: string; amount: number; key: string }`
+- `params: { address: string; amount: number; key: string; feeMode?: 'include' | 'exclude' }`
   - **`address`** (string): The recipient's address.
   - **`amount`** (number): The amount to send.
   - **`key`** (string): The private key corresponding to the source address from which the funds will be sent.
+  - **`feeMode`** (`'include' | 'exclude'`, optional): Determines who pays the transaction fee.
+    - **`include`**: The fee is deducted from the sent amount, so the recipient pays the fee indirectly.
+    - **`exclude`**: The fee is added on top of the sent amount, so the sender pays the fee.
+    - **Default**: `include`.
 
-**Returns:** `Promise<any>`
-A promise that resolves to the transaction result, which may include a transaction ID (txid) and other related information if the transaction is successfully broadcast to the network.
+**Returns:** `Promise<string>`
+A promise that resolves to a **transaction ID (txid)** string if the transaction is successfully broadcast to the network.
 
 **Example:**
 ```typescript
 proxy.wallet
-  .getBalanceWithPrivateKey({
+  .sendFundsWithPrivateKey({
     address: 'recipientAddress',
     amount: 1000,
-    key: 'privateKeyString'
+    key: 'privateKeyString',
+    feeMode: 'exclude'
   })
-  .then(result => console.log('Transaction Result:', result))
+  .then(txid => console.log('Transaction ID:', txid))
   .catch(error => console.error('Failed to send transaction:', error))
 ```
+
+**Notes:**
+- If `feeMode` is not specified, the default behavior is `include` (the recipient pays the fee).
+- The `txid` returned can be used to verify the transaction on the network.
 
 ---
 
@@ -55,7 +64,7 @@ A promise that resolves to an object containing the following fields:
 **Example:**
 ```typescript
 proxy.wallet
-  .getunspentswithprivatekey({ key: 'privateKeyString' })
+  .getBalanceWithPrivateKey({ key: 'privateKeyString' })
   .then((result) => {
     console.log('Unspent Outputs:', result.unspents)
     console.log('Balance:', result.balance)

@@ -11,6 +11,7 @@ declare module 'pocketnet-proxy/src/kit.js' {
     address: string
     amount: number
     key: string
+    feemode: 'include' | 'exclude'
   }
 
   export interface GetUnspentsWithPrivateKeyParams {
@@ -37,7 +38,7 @@ declare module 'pocketnet-proxy/src/kit.js' {
   }
 
   interface Kit {
-    start: (config: { list: Array<'nodeManager' | 'cache'> }) => Promise<void>
+    start: (config: { list: Array<'nodeManager' | 'cache', 'wallet'> }) => Promise<void>
     proxy: () => Promise<{
       api: {
         node: {

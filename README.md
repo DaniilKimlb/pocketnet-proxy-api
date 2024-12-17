@@ -32,7 +32,7 @@ Alternatively, you can add the repository as a dependency in your `package.json`
 ```json
 {
   "dependencies": {
-    "pocketnet-proxy-api": "https://github.com/DaniilKimlb/pocketnet-proxy-api.git"
+    "pocketnet-proxy-api": "github:DaniilKimlb/pocketnet-proxy-api"
   }
 }
 ```
