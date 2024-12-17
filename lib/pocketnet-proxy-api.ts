@@ -198,26 +198,4 @@ class PocketNetProxyApi {
   }
 }
 
-async function a() {
-  const p = await PocketNetProxyApi.create()
-  setTimeout(async () => {
-    const d = await p.wallet.getBalanceWithPrivateKey({
-      key: '5vNa1YiHTGHe3xhX3xW9kdAbUTh8AmTtzn5b74meC1uwQPVw9BtD',
-    })
-
-    // txid - id transaction
-    const f = await p.wallet.sendFundsWithPrivateKey({
-      address: 'PC1kpAnbE4ovPXWGEzDtPW1fGP6XsqcVgZ',
-      amount: 2,
-      key: '5vNa1YiHTGHe3xhX3xW9kdAbUTh8AmTtzn5b74meC1uwQPVw9BtD',
-      feemode: 'include',
-    })
-    console.log(d)
-  }, 3000)
-
-  // console.log(d, '||')
-}
-
-a()
-
 export default PocketNetProxyApi
