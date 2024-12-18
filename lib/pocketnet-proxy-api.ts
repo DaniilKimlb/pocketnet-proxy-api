@@ -116,7 +116,7 @@ class PocketNetProxyApi {
 
     return this.proxy?.api.node.rpc.action({
       method,
-      parameters: params,
+      parameters: typeof params === 'object' ? Object.values(params) : params,
     })
   }
 

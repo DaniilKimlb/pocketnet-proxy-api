@@ -166,8 +166,8 @@ interface GetPageScoresParams {
  * Interface for the `getcomments` RPC method parameters.
  */
 interface GetCommentsParams {
-    postid: number;
-    parentid?: number;
+    postid: string;
+    parentid?: string;
     address?: string;
     commend_ids?: string[];
 }

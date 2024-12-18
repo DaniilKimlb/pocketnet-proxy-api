@@ -2,6 +2,14 @@
 
 This document provides a detailed description of all available RPC methods in the `PocketNetProxy` class. Each method is listed with its parameters, return values, and examples of usage.
 
+## Method Descriptions
+
+Each RPC method is described with its parameters, return values, and examples of usage.
+
+### **Important Note: Parameter Order**
+
+For all RPC methods, parameters must be passed in the exact order as specified in the method's interface. This ensures proper execution and avoids unexpected errors. Always double-check the parameter sequence in the examples provided.
+
 ## Table of Contents
 
 - **[getapps](#getapps)**: Retrieves a list of applications filtered by the given criteria.
