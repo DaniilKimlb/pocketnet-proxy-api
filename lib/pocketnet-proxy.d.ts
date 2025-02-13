@@ -23,6 +23,11 @@ declare module 'pocketnet-proxy/src/kit.js' {
     balance: number
   }
 
+  export interface SignatureParams {
+    signature: unknown
+  }
+
+  export type SignatureResult = boolean
   interface NodeManager {
     someProperty: string
   }
@@ -36,12 +41,20 @@ declare module 'pocketnet-proxy/src/kit.js' {
   }
   interface Wallet {
     sendwithprivatekey: (params: SendWithPrivateKeyParams) => Promise<string>
-    getunspentswithprivatekey: (params: GetUnspentsWithPrivateKeyParams) => Promise<GetUnspentsWithPrivateKeyResult>
+    getunspentswithprivatekey: (
+      params: GetUnspentsWithPrivateKeyParams
+    ) => Promise<GetUnspentsWithPrivateKeyResult>
   }
 
+  interface Authorization {
+    signature: (param: SignatureParams) => Promise<SignatureResult>
+  }
   interface Kit {
-    start: (config: { list: Array<'nodeManager' | 'cache', 'wallet'> }) => Promise<void>
+    start: (config: {
+      list: Array<'nodeManager' | 'cache', 'wallet'>
+    }) => Promise<void>
     proxy: () => Promise<{
+      authorization: Authorization
       api: {
         node: {
           rpc: {

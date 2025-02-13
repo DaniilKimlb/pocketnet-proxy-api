@@ -37,6 +37,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const kit_js_1 = __importDefault(require("pocketnet-proxy/src/kit.js"));
+const authorization_1 = require("./authorization");
 const rpc_constants_1 = require("./rpc.constants");
 const wallet_1 = require("./wallet");
 global.MIN_NODES_COUNT = 10;
@@ -73,6 +74,13 @@ class PocketNetProxyApi {
          * - Retrieve the balance and unspent outputs of an address using a private key.
          */
         this.wallet = new wallet_1.Wallet(this);
+        /**
+         * Instance of the Authorization class for handling user authorization.
+         *
+         * Provides functionality to:
+         * - Verify authorization signatures.
+         */
+        this.authorization = new authorization_1.Authorization(this);
         this.proxy = null;
         /**
          * Object containing all RPC methods as properties.

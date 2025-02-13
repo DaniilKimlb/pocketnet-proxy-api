@@ -80,6 +80,12 @@ In addition to RPC methods, the PocketNet Proxy API provides wallet-related func
 
 For more details on these wallet methods and their responses, refer to the [Wallet Methods Documentation](./docs/wallet-methods.md).
 
+## Authorization Methods
+
+The PocketNet Proxy API also includes the `authorization` object, which provides authentication-related functionality. It allows you to verify authorization signatures to ensure secure interactions within the network.
+
+For more details on authorization methods and their usage, see the [Authorization Methods Documentation](./docs/authorization-methods.md).
+
 ## Configuration
 
 ### Global Variables

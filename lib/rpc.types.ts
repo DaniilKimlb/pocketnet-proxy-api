@@ -25,8 +25,8 @@ interface GetAppCommentsParams {
  * Interface for the `getuserprofile` RPC method parameters.
  */
 interface GetUserProfileParams {
-  address: string
-  shortForm: string
+  addresses: string[]
+  shortForm?: string
 }
 
 /**

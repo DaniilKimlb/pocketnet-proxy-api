@@ -1,5 +1,6 @@
 import type { RPCMethods } from './rpc.types';
 import kit from 'pocketnet-proxy/src/kit.js';
+import { Authorization } from './authorization';
 import { Wallet } from './wallet';
 /**
  * PocketNetProxy is a class responsible for managing and interacting with the PocketNet
@@ -24,6 +25,13 @@ declare class PocketNetProxyApi {
      * - Retrieve the balance and unspent outputs of an address using a private key.
      */
     wallet: Wallet;
+    /**
+     * Instance of the Authorization class for handling user authorization.
+     *
+     * Provides functionality to:
+     * - Verify authorization signatures.
+     */
+    authorization: Authorization;
     proxy: Awaited<ReturnType<typeof kit.proxy>> | null;
     /**
      * Object containing all RPC methods as properties.

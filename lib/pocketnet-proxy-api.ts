@@ -1,5 +1,6 @@
 import type { OptionalRPCParams, RPCMethodMap, RPCMethods } from './rpc.types'
 import kit from 'pocketnet-proxy/src/kit.js'
+import { Authorization } from './authorization'
 import { availableRPCMethods } from './rpc.constants'
 import { Wallet } from './wallet'
 
@@ -33,6 +34,13 @@ class PocketNetProxyApi {
    * - Retrieve the balance and unspent outputs of an address using a private key.
    */
   wallet: Wallet = new Wallet(this)
+  /**
+   * Instance of the Authorization class for handling user authorization.
+   *
+   * Provides functionality to:
+   * - Verify authorization signatures.
+   */
+  authorization: Authorization = new Authorization(this)
   proxy: Awaited<ReturnType<typeof kit.proxy>> | null = null
 
   /**
@@ -150,6 +158,7 @@ class PocketNetProxyApi {
       // Start the kit with the specified list of modules
       await kit.start({ list: ['nodeManager', 'cache'] })
       this.proxy = await kit.proxy()
+
       // Mark the kit as initialized
       this.kitInitialized = true
       return this.proxy
