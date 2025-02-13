@@ -16,6 +16,7 @@ This project provides a structured way to access the PocketNet proxy, making it 
 - [Usage](#usage)
 - [RPC Methods](#rpc-methods)
 - [Wallet Methods](#wallet-methods)
+- [Authorization Methods](#authorization-methods)
 - [Configuration](#configuration)
 - [License](#license)
 
