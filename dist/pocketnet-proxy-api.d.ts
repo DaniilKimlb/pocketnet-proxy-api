@@ -131,7 +131,7 @@ declare class PocketNetProxyApi {
      *     console.error('Failed to initialize PocketNet Proxy:', error);
      *   });
      */
-    static create(): Promise<PocketNetProxyApi>;
+    static create(session?: string): Promise<PocketNetProxyApi>;
 }
 export default PocketNetProxyApi;
 //# sourceMappingURL=pocketnet-proxy-api.d.ts.map

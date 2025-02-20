@@ -220,10 +220,15 @@ class PocketNetProxyApi {
      *     console.error('Failed to initialize PocketNet Proxy:', error);
      *   });
      */
-    static async create() {
+    static async create(session) {
         const instance = new PocketNetProxyApi();
         const proxy = await instance.init();
         await (proxy === null || proxy === void 0 ? void 0 : proxy.nodeManager.waitreadywithrating());
+        if (session) {
+            // eslint-disable-next-line ts/ban-ts-comment
+            // @ts-ignore
+            proxy.session = session;
+        }
         return instance;
     }
 }
