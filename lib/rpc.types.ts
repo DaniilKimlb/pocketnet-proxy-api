@@ -49,12 +49,6 @@ interface GetJuryModeratorsParams {
   jury: string
 }
 
-/**
- * Interface for the `getjury` RPC method parameters.
- */
-interface GetJuryParams {
-  jury: string
-}
 
 /**
  * Interface for the `getalljury` RPC method parameters.
@@ -68,13 +62,6 @@ interface GetBansParams {
   address: string
 }
 
-/**
- * Interface for the `getaddressid` RPC method parameters.
- */
-interface GetAddressIdParams {
-  address: string
-  id: number
-}
 
 /**
  * Interface for the `getaddressregistration` RPC method parameters.
@@ -115,14 +102,6 @@ interface GetAddressInfoParams {
   address: string
 }
 
-/**
- * Interface for the `getbalancehistory` RPC method parameters.
- */
-interface GetBalanceHistoryParams {
-  addresses: string[]
-  topHeight: number
-  count: number
-}
 
 /**
  * Interface for the `checkstringtype` RPC method parameters.
@@ -287,12 +266,6 @@ interface GetCoinInfoParams {
   height?: number
 }
 
-/**
- * Interface for the `getposdifficulty` RPC method parameters.
- */
-interface GetPosDifficultyParams {
-  height?: number
-}
 
 /**
  * Interface for the `gettags` RPC method parameters.
@@ -303,28 +276,6 @@ interface GetTagsParams {
   lang: string
 }
 
-/**
- * Interface for the `addtransaction` RPC method parameters.
- */
-interface AddTransactionParams {
-  param1: string
-  param2: Record<string, any>
-}
-
-/**
- * Interface for the `generatetransaction` RPC method parameters.
- */
-interface GenerateTransactionParams {
-  address: string
-  privkeys: string[]
-  outcount: number
-  type: string
-  payload: Record<string, any>
-  fee: number
-  contentaddress: number
-  confirmations: number
-  locktime: number
-}
 
 /**
  * Interface for the `search` RPC method parameters.
@@ -365,111 +316,61 @@ interface GetMissedInfoParams {
   block_number: number
 }
 
-/**
- * Interface for the `getaccountblockings` RPC method parameters.
- */
-interface GetAccountBlockingsParams {
-  address: string
-  topHeight: number
-  pageStart: number
-  pageSize: number
-}
-
-/**
- * Interface for the `getaccountblockers` RPC method parameters.
- */
-interface GetAccountBlockersParams {
-  address: string
-  topHeight: number
-  pageStart: number
-  pageSize: number
-}
 
 interface RPCMethodMap {
   getapps: GetAppsParams
   getappscores: GetAppScoresParams
   getappcomments: GetAppCommentsParams
   getuserprofile: GetUserProfileParams
+  getuseraddress: GetUserAddressParams
+  getuserstate: GetUserStateParams
+  getuserstatistic: GetUserStatisticParams
+  getusersubscribes: GetUserSubscribesParams
+  getusersubscribers: GetUserSubscribersParams
   getjuryassigned: GetJuryAssignedParams
   getjurymoderators: GetJuryModeratorsParams
-  getjury: GetJuryParams
   getalljury: GetAllJuryParams
   getbans: GetBansParams
-  getaddressid: GetAddressIdParams
   getaddressregistration: GetAddressRegistrationParams
-  getuserstate: GetUserStateParams
-  txunspent: TxUnspentParams
-  getaccountearning: GetAccountEarningParams
   getaddressinfo: GetAddressInfoParams
-  getbalancehistory: GetBalanceHistoryParams
-  checkstringtype: CheckStringTypeParams
   getaddresstransactions: GetAddressTransactionsParams
+  getaddressscores: GetAddressScoresParams
+  getaccountearning: GetAccountEarningParams
+  getaccountsetting: GetAccountSettingParams
+  txunspent: TxUnspentParams
+  gettransaction: GetCompactBlockParams
+  getrawtransaction: GetCompactBlockParams
+  decoderawtransaction: GetCompactBlockParams
   getblocktransactions: GetBlockTransactionsParams
   getcompactblock: GetCompactBlockParams
-  getaddressscores: GetAddressScoresParams
+  getblock: GetCompactBlockParams
+  getblockcount: GetTimeParams
+  getblockhash: GetCompactBlockParams
+  getblocktemplate: GetCompactBlockParams
+  getbestblockhash: GetTimeParams
+  getcontent: GetContentParams
+  getcontents: GetContentsParams
   getpostscores: GetPostScoresParams
   getpagescores: GetPageScoresParams
   getcomments: GetCommentsParams
   getlastcomments: GetLastCommentsParams
-  getcontent: GetContentParams
-  getcontents: GetContentsParams
-  getuseraddress: GetUserAddressParams
-  getusersubscribes: GetUserSubscribesParams
-  getusersubscribers: GetUserSubscribersParams
-  getaccountsetting: GetAccountSettingParams
-  getuserstatistic: GetUserStatisticParams
+  checkstringtype: CheckStringTypeParams
+  search: SearchParams
+  searchusers: SearchUsersParams
+  searchlinks: SearchLinksParams
+  gettags: GetTagsParams
   gettime: GetTimeParams
   getpeerinfo: GetPeerInfoParams
   getnodeinfo: GetNodeInfoParams
   getcoininfo: GetCoinInfoParams
-  getposdifficulty: GetPosDifficultyParams
-  gettags: GetTagsParams
-  addtransaction: AddTransactionParams
-  generatetransaction: GenerateTransactionParams
-  getaccountearningstats: GetAccountEarningParams
-  GetAccountBlockings: GetAccountBlockingsParams
-  GetAccountBlockers: GetAccountBlockersParams
-  search: SearchParams
-  searchusers: SearchUsersParams
-  searchlinks: SearchLinksParams
-  getmissedinfo: GetMissedInfoParams
-  getjuryvotes: GetJuryParams
-  getjurybalance: GetJuryParams
-  getjurylist: GetJuryParams
-  getjuryreward: GetJuryParams
-  getjuryvotescount: GetJuryParams
-  getmoderatorstatistics: GetJuryParams
-  gettransaction: GetCompactBlockParams
-  getaccountfollowers: GetUserSubscribesParams
-  getaccountfollowings: GetUserSubscribesParams
-  getaccountcontents: GetUserSubscribesParams
-  getaccountcomments: GetUserSubscribesParams
-  getaccountposts: GetUserSubscribesParams
-  getblockreward: GetUserSubscribesParams
-  getblockcount: GetUserSubscribesParams
-  getnetworkhashrate: GetUserSubscribesParams
-  getnetworkinfo: GetUserSubscribesParams
-  getrawtransaction: GetCompactBlockParams
-  decoderawtransaction: GetCompactBlockParams
-  validateaddress: GetAddressInfoParams
-  verifychain: GetTimeParams
-  getwalletinfo: GetTimeParams
-  getblockhash: GetCompactBlockParams
+  getnetworkinfo: GetTimeParams
   getmempoolinfo: GetTimeParams
   getrawmempool: GetTimeParams
-  getdifficulty: GetPosDifficultyParams
-  getblocktemplate: GetCompactBlockParams
-  getnetworkstakeweight: GetPosDifficultyParams
-  getstakingstatus: GetPosDifficultyParams
-  getmintinginfo: GetPosDifficultyParams
-  getblockchaininfo: GetPosDifficultyParams
+  getdifficulty: GetCoinInfoParams
+  getblockchaininfo: GetCoinInfoParams
   getchaintips: GetTimeParams
-  getblocksubsidy: GetTimeParams
-  getblock: GetCompactBlockParams
-  getbestblockhash: GetTimeParams
+  getmissedinfo: GetMissedInfoParams
   gettxout: GetCompactBlockParams
-  gettxoutproof: GetCompactBlockParams
-  verifytxoutproof: GetCompactBlockParams
 }
 
 type OptionalRPCParams<T> = keyof T extends never ? undefined : T
